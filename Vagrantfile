@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
 
       # Провижининг: копируем скрипт и делаем его исполняемым
       box.vm.provision "shell", inline: <<-SHELL
-        cp /vagrant/ps_ax /home/vagrant/ps_ax.sh
+        cp /vagrant/ps_ax.sh /home/vagrant/ps_ax.sh
         chown vagrant:vagrant /home/vagrant/ps_ax.sh
         chmod +x /home/vagrant/ps_ax.sh
       SHELL
