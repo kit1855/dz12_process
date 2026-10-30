@@ -1,0 +1,404 @@
+# исторически так сложилось, что команда ps ax не выдаёт столбец PPID
+
+vagrant@ubuntuserver:~$ ps ax
+    PID TTY      STAT   TIME COMMAND
+      1 ?        Ss     0:03 /sbin/init
+      2 ?        S      0:00 [kthreadd]
+      3 ?        I<     0:00 [rcu_gp]
+      4 ?        I<     0:00 [rcu_par_gp]
+      5 ?        I<     0:00 [slub_flushwq]
+      6 ?        I<     0:00 [netns]
+      8 ?        I<     0:00 [kworker/0:0H-events_highpri]
+     10 ?        I<     0:00 [mm_percpu_wq]
+     11 ?        S      0:00 [rcu_tasks_rude_]
+     12 ?        S      0:00 [rcu_tasks_trace]
+     13 ?        S      0:00 [ksoftirqd/0]
+     14 ?        I      0:00 [rcu_sched]
+     15 ?        S      0:00 [migration/0]
+     16 ?        S      0:00 [idle_inject/0]
+     18 ?        S      0:00 [cpuhp/0]
+     19 ?        S      0:00 [cpuhp/1]
+     20 ?        S      0:00 [idle_inject/1]
+     21 ?        S      0:00 [migration/1]
+     22 ?        S      0:01 [ksoftirqd/1]
+     24 ?        I<     0:00 [kworker/1:0H-events_highpri]
+     25 ?        S      0:00 [kdevtmpfs]
+     26 ?        I<     0:00 [inet_frag_wq]
+     27 ?        S      0:00 [kauditd]
+     28 ?        S      0:00 [khungtaskd]
+     29 ?        S      0:00 [oom_reaper]
+     30 ?        I<     0:00 [writeback]
+     31 ?        S      0:00 [kcompactd0]
+     32 ?        SN     0:00 [ksmd]
+     33 ?        SN     0:00 [khugepaged]
+     37 ?        I      0:00 [kworker/1:1-cgroup_free]
+     80 ?        I<     0:00 [kintegrityd]
+     81 ?        I<     0:00 [kblockd]
+     82 ?        I<     0:00 [blkcg_punt_bio]
+     83 ?        I<     0:00 [tpm_dev_wq]
+     84 ?        I<     0:00 [ata_sff]
+     85 ?        I<     0:00 [md]
+     86 ?        I<     0:00 [edac-poller]
+     87 ?        I<     0:00 [devfreq_wq]
+     88 ?        S      0:00 [watchdogd]
+     91 ?        I<     0:00 [kworker/0:1H-kblockd]
+     93 ?        S      0:00 [kswapd0]
+     94 ?        S      0:00 [ecryptfs-kthrea]
+     96 ?        I<     0:00 [kthrotld]
+     98 ?        I<     0:00 [acpi_thermal_pm]
+     99 ?        S      0:00 [scsi_eh_0]
+    100 ?        I<     0:00 [scsi_tmf_0]
+    101 ?        S      0:00 [scsi_eh_1]
+    102 ?        I<     0:00 [scsi_tmf_1]
+    104 ?        I<     0:00 [vfio-irqfd-clea]
+    105 ?        I<     0:00 [mld]
+    106 ?        I<     0:00 [ipv6_addrconf]
+    115 ?        I<     0:00 [kstrp]
+    118 ?        I<     0:00 [zswap-shrink]
+    119 ?        I<     0:00 [kworker/u5:0]
+    124 ?        I<     0:00 [charger_manager]
+    147 ?        I<     0:00 [kworker/1:1H-kblockd]
+    181 ?        I<     0:00 [cryptd]
+    182 ?        I      0:15 [kworker/0:2-events]
+    200 ?        I<     0:00 [mpt_poll_0]
+    201 ?        I<     0:00 [mpt/0]
+    208 ?        S      0:00 [scsi_eh_2]
+    209 ?        I<     0:00 [scsi_tmf_2]
+    241 ?        I<     0:00 [raid5wq]
+    285 ?        S      0:00 [jbd2/sda1-8]
+    286 ?        I<     0:00 [ext4-rsv-conver]
+    358 ?        S<s    0:00 /lib/systemd/systemd-journald
+    389 ?        I<     0:00 [kaluad]
+    392 ?        I<     0:00 [kmpath_rdacd]
+    394 ?        I<     0:00 [kmpathd]
+    395 ?        I<     0:00 [kmpath_handlerd]
+    396 ?        SLsl   0:06 /sbin/multipathd -d -s
+    400 ?        Ss     0:00 /lib/systemd/systemd-udevd
+    441 ?        Ssl    0:00 /lib/systemd/systemd-timesyncd
+    591 ?        Ss     0:00 /lib/systemd/systemd-resolved
+    690 ?        Ss     0:00 /usr/sbin/cron -f -P
+    692 ?        Ss     0:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+    698 ?        Ssl    0:00 /usr/sbin/irqbalance --foreground
+    699 ?        Ss     0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+    701 ?        Ssl    0:00 /usr/sbin/rsyslogd -n -iNONE
+    705 ?        Ssl    0:03 /snap/snapd/current/usr/lib/snapd/snapd
+    706 ?        Ss     0:00 /lib/systemd/systemd-logind
+    762 ttyS0    Ss+    0:00 /sbin/agetty -o -p -- \u --keep-baud 115200,57600,38400,9600 ttyS0 vt220
+    783 tty1     Ss+    0:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+    784 ?        Ssl    0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+    786 ?        Ssl    0:00 /usr/libexec/polkitd --no-debug
+    806 ?        Ss     0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+    814 ?        Ss     0:00 /lib/systemd/systemd --user
+    815 ?        S      0:00 (sd-pam)
+   1875 ?        Ss     0:00 /lib/systemd/systemd-networkd
+   2242 ?        Ss     0:00 sshd: vagrant [priv]
+   2291 ?        R      0:05 sshd: vagrant@pts/0
+   2292 pts/0    Ss     0:00 -bash
+   4823 ?        I      0:17 [kworker/1:0-events]
+   4911 ?        I      0:10 [kworker/0:1-events]
+   4942 ?        I      0:00 [kworker/u4:1-events_unbound]
+   9653 ?        I      0:00 [kworker/u4:2-events_unbound]
+  14733 ?        R      0:00 [kworker/u4:0-events_unbound]
+  14735 pts/0    R+     0:00 ps ax
+vagrant@ubuntuserver:~$
+
+# чтоб достать столбец PPID нужно конкретно команде ps ax это указать
+vagrant@ubuntuserver:~$ ps ax -o pid,ppid,tty,stat,time,command
+    PID    PPID TT       STAT     TIME COMMAND
+      1       0 ?        Ss   00:00:03 /sbin/init
+      2       0 ?        S    00:00:00 [kthreadd]
+      3       2 ?        I<   00:00:00 [rcu_gp]
+      4       2 ?        I<   00:00:00 [rcu_par_gp]
+      5       2 ?        I<   00:00:00 [slub_flushwq]
+      6       2 ?        I<   00:00:00 [netns]
+      8       2 ?        I<   00:00:00 [kworker/0:0H-events_highpri]
+     10       2 ?        I<   00:00:00 [mm_percpu_wq]
+     11       2 ?        S    00:00:00 [rcu_tasks_rude_]
+     12       2 ?        S    00:00:00 [rcu_tasks_trace]
+     13       2 ?        S    00:00:00 [ksoftirqd/0]
+     14       2 ?        I    00:00:00 [rcu_sched]
+     15       2 ?        S    00:00:00 [migration/0]
+     16       2 ?        S    00:00:00 [idle_inject/0]
+     18       2 ?        S    00:00:00 [cpuhp/0]
+     19       2 ?        S    00:00:00 [cpuhp/1]
+     20       2 ?        S    00:00:00 [idle_inject/1]
+     21       2 ?        S    00:00:00 [migration/1]
+     22       2 ?        S    00:00:01 [ksoftirqd/1]
+     24       2 ?        I<   00:00:00 [kworker/1:0H-events_highpri]
+     25       2 ?        S    00:00:00 [kdevtmpfs]
+     26       2 ?        I<   00:00:00 [inet_frag_wq]
+     27       2 ?        S    00:00:00 [kauditd]
+     28       2 ?        S    00:00:00 [khungtaskd]
+     29       2 ?        S    00:00:00 [oom_reaper]
+     30       2 ?        I<   00:00:00 [writeback]
+     31       2 ?        S    00:00:00 [kcompactd0]
+     32       2 ?        SN   00:00:00 [ksmd]
+     33       2 ?        SN   00:00:00 [khugepaged]
+     37       2 ?        I    00:00:00 [kworker/1:1-cgroup_free]
+     80       2 ?        I<   00:00:00 [kintegrityd]
+     81       2 ?        I<   00:00:00 [kblockd]
+     82       2 ?        I<   00:00:00 [blkcg_punt_bio]
+     83       2 ?        I<   00:00:00 [tpm_dev_wq]
+     84       2 ?        I<   00:00:00 [ata_sff]
+     85       2 ?        I<   00:00:00 [md]
+     86       2 ?        I<   00:00:00 [edac-poller]
+     87       2 ?        I<   00:00:00 [devfreq_wq]
+     88       2 ?        S    00:00:00 [watchdogd]
+     91       2 ?        I<   00:00:00 [kworker/0:1H-kblockd]
+     93       2 ?        S    00:00:00 [kswapd0]
+     94       2 ?        S    00:00:00 [ecryptfs-kthrea]
+     96       2 ?        I<   00:00:00 [kthrotld]
+     98       2 ?        I<   00:00:00 [acpi_thermal_pm]
+     99       2 ?        S    00:00:00 [scsi_eh_0]
+    100       2 ?        I<   00:00:00 [scsi_tmf_0]
+    101       2 ?        S    00:00:00 [scsi_eh_1]
+    102       2 ?        I<   00:00:00 [scsi_tmf_1]
+    104       2 ?        I<   00:00:00 [vfio-irqfd-clea]
+    105       2 ?        I<   00:00:00 [mld]
+    106       2 ?        I<   00:00:00 [ipv6_addrconf]
+    115       2 ?        I<   00:00:00 [kstrp]
+    118       2 ?        I<   00:00:00 [zswap-shrink]
+    119       2 ?        I<   00:00:00 [kworker/u5:0]
+    124       2 ?        I<   00:00:00 [charger_manager]
+    147       2 ?        I<   00:00:00 [kworker/1:1H-kblockd]
+    181       2 ?        I<   00:00:00 [cryptd]
+    182       2 ?        I    00:00:15 [kworker/0:2-events]
+    200       2 ?        I<   00:00:00 [mpt_poll_0]
+    201       2 ?        I<   00:00:00 [mpt/0]
+    208       2 ?        S    00:00:00 [scsi_eh_2]
+    209       2 ?        I<   00:00:00 [scsi_tmf_2]
+    241       2 ?        I<   00:00:00 [raid5wq]
+    285       2 ?        S    00:00:00 [jbd2/sda1-8]
+    286       2 ?        I<   00:00:00 [ext4-rsv-conver]
+    358       1 ?        S<s  00:00:00 /lib/systemd/systemd-journald
+    389       2 ?        I<   00:00:00 [kaluad]
+    392       2 ?        I<   00:00:00 [kmpath_rdacd]
+    394       2 ?        I<   00:00:00 [kmpathd]
+    395       2 ?        I<   00:00:00 [kmpath_handlerd]
+    396       1 ?        SLsl 00:00:06 /sbin/multipathd -d -s
+    400       1 ?        Ss   00:00:00 /lib/systemd/systemd-udevd
+    441       1 ?        Ssl  00:00:00 /lib/systemd/systemd-timesyncd
+    591       1 ?        Ss   00:00:00 /lib/systemd/systemd-resolved
+    690       1 ?        Ss   00:00:00 /usr/sbin/cron -f -P
+    692       1 ?        Ss   00:00:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+    698       1 ?        Ssl  00:00:00 /usr/sbin/irqbalance --foreground
+    699       1 ?        Ss   00:00:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+    701       1 ?        Ssl  00:00:00 /usr/sbin/rsyslogd -n -iNONE
+    705       1 ?        Ssl  00:00:03 /snap/snapd/current/usr/lib/snapd/snapd
+    706       1 ?        Ss   00:00:00 /lib/systemd/systemd-logind
+    762       1 ttyS0    Ss+  00:00:00 /sbin/agetty -o -p -- \u --keep-baud 115200,57600,38400,9600 ttyS0 vt220
+    783       1 tty1     Ss+  00:00:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+    784       1 ?        Ssl  00:00:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+    786       1 ?        Ssl  00:00:00 /usr/libexec/polkitd --no-debug
+    806       1 ?        Ss   00:00:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+    814       1 ?        Ss   00:00:00 /lib/systemd/systemd --user
+    815     814 ?        S    00:00:00 (sd-pam)
+   1875       1 ?        Ss   00:00:00 /lib/systemd/systemd-networkd
+   2242     806 ?        Ss   00:00:00 sshd: vagrant [priv]
+   2291    2242 ?        R    00:00:04 sshd: vagrant@pts/0
+   2292    2291 pts/0    Ss   00:00:00 -bash
+   4823       2 ?        I    00:00:16 [kworker/1:0-events]
+   4911       2 ?        I    00:00:08 [kworker/0:1-events]
+   4942       2 ?        R    00:00:00 [kworker/u4:1-events_unbound]
+   7296       2 ?        I    00:00:00 [kworker/u4:0-events_power_efficient]
+   9653       2 ?        I    00:00:00 [kworker/u4:2-events_unbound]
+  12209    2292 pts/0    R+   00:00:00 ps ax -o pid,ppid,tty,stat,time,command
+
+# для этого скрипт был доработан и теперь он может выводить значения столбца PPID.
+# думаю это было причиной того, что система не приняла работу
+vagrant@ubuntuserver:~$ ./ps_ax.sh
+    PID    PPID TTY      STAT   TIME COMMAND
+      1       0 ?        Ss     0:03   /sbin/init
+      2       0 ?        S      0:00   [kthreadd]
+      3       2 ?        I<     0:00   [rcu_gp]
+      4       2 ?        I<     0:00   [rcu_par_gp]
+      5       2 ?        I<     0:00   [slub_flushwq]
+      6       2 ?        I<     0:00   [netns]
+      8       2 ?        I<     0:00   [kworker/0:0H-events_highpri]
+     10       2 ?        I<     0:00   [mm_percpu_wq]
+     11       2 ?        S      0:00   [rcu_tasks_rude_]
+     12       2 ?        S      0:00   [rcu_tasks_trace]
+     13       2 ?        S      0:00   [ksoftirqd/0]
+     14       2 ?        I      0:00   [rcu_sched]
+     15       2 ?        S      0:00   [migration/0]
+     16       2 ?        S      0:00   [idle_inject/0]
+     18       2 ?        S      0:00   [cpuhp/0]
+     19       2 ?        S      0:00   [cpuhp/1]
+     20       2 ?        S      0:00   [idle_inject/1]
+     21       2 ?        S      0:00   [migration/1]
+     22       2 ?        S      0:01   [ksoftirqd/1]
+     24       2 ?        I<     0:00   [kworker/1:0H-events_highpri]
+     25       2 ?        S      0:00   [kdevtmpfs]
+     26       2 ?        I<     0:00   [inet_frag_wq]
+     27       2 ?        S      0:00   [kauditd]
+     28       2 ?        S      0:00   [khungtaskd]
+     29       2 ?        S      0:00   [oom_reaper]
+     30       2 ?        I<     0:00   [writeback]
+     31       2 ?        S      0:00   [kcompactd0]
+     32       2 ?        SN     0:00   [ksmd]
+     33       2 ?        SN     0:00   [khugepaged]
+     37       2 ?        I      0:00   [kworker/1:1-cgroup_free]
+     80       2 ?        I<     0:00   [kintegrityd]
+     81       2 ?        I<     0:00   [kblockd]
+     82       2 ?        I<     0:00   [blkcg_punt_bio]
+     83       2 ?        I<     0:00   [tpm_dev_wq]
+     84       2 ?        I<     0:00   [ata_sff]
+     85       2 ?        I<     0:00   [md]
+     86       2 ?        I<     0:00   [edac-poller]
+     87       2 ?        I<     0:00   [devfreq_wq]
+     88       2 ?        S      0:00   [watchdogd]
+     91       2 ?        I<     0:00   [kworker/0:1H-kblockd]
+     93       2 ?        S      0:00   [kswapd0]
+     94       2 ?        S      0:00   [ecryptfs-kthrea]
+     96       2 ?        I<     0:00   [kthrotld]
+     98       2 ?        I<     0:00   [acpi_thermal_pm]
+     99       2 ?        S      0:00   [scsi_eh_0]
+    100       2 ?        I<     0:00   [scsi_tmf_0]
+    101       2 ?        S      0:00   [scsi_eh_1]
+    102       2 ?        I<     0:00   [scsi_tmf_1]
+    104       2 ?        I<     0:00   [vfio-irqfd-clea]
+    105       2 ?        I<     0:00   [mld]
+    106       2 ?        I<     0:00   [ipv6_addrconf]
+    115       2 ?        I<     0:00   [kstrp]
+    118       2 ?        I<     0:00   [zswap-shrink]
+    119       2 ?        I<     0:00   [kworker/u5:0]
+    124       2 ?        I<     0:00   [charger_manager]
+    147       2 ?        I<     0:00   [kworker/1:1H-kblockd]
+    181       2 ?        I<     0:00   [cryptd]
+    182       2 ?        I      0:15   [kworker/0:2-events]
+    200       2 ?        I<     0:00   [mpt_poll_0]
+    201       2 ?        I<     0:00   [mpt/0]
+    208       2 ?        S      0:00   [scsi_eh_2]
+    209       2 ?        I<     0:00   [scsi_tmf_2]
+    241       2 ?        I<     0:00   [raid5wq]
+    285       2 ?        S      0:00   [jbd2/sda1-8]
+    286       2 ?        I<     0:00   [ext4-rsv-conver]
+    358       1 ?        Ss<    0:00   /lib/systemd/systemd-journald
+    389       2 ?        I<     0:00   [kaluad]
+    392       2 ?        I<     0:00   [kmpath_rdacd]
+    394       2 ?        I<     0:00   [kmpathd]
+    395       2 ?        I<     0:00   [kmpath_handlerd]
+    396       1 ?        Ssl    0:06   /sbin/multipathd -d -s
+    400       1 ?        Ss     0:00   /lib/systemd/systemd-udevd
+    441       1 ?        Ssl    0:00   /lib/systemd/systemd-timesyncd
+    591       1 ?        Ss     0:00   /lib/systemd/systemd-resolved
+    690       1 ?        Ss     0:00   /usr/sbin/cron -f -P
+    692       1 ?        Ss     0:00   @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activati
+    698       1 ?        Ssl    0:00   /usr/sbin/irqbalance --foreground
+    699       1 ?        Ss     0:00   /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+    701       1 ?        Ssl    0:00   /usr/sbin/rsyslogd -n -iNONE
+    705       1 ?        Ssl    0:03   /snap/snapd/current/usr/lib/snapd/snapd
+    706       1 ?        Ss     0:00   /lib/systemd/systemd-logind
+    762       1 tty64    Ss+    0:00   /sbin/agetty -o -p -- \u --keep-baud 115200,57600,38400,9600 ttyS0 vt220
+    783       1 tty1     Ss+    0:00   /sbin/agetty -o -p -- \u --noclear tty1 linux
+    784       1 ?        Ssl    0:00   /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wa
+    786       1 ?        Ssl    0:00   /usr/libexec/polkitd --no-debug
+    806       1 ?        Ss     0:00   sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+    814       1 ?        Ss     0:00   /lib/systemd/systemd --user
+    815     814 ?        S      0:00   (sd-pam)
+   1875       1 ?        Ss     0:00   /lib/systemd/systemd-networkd
+   2242     806 ?        Ss     0:00   sshd: vagrant [priv]
+   2291    2242 ?        S      0:04   sshd: vagrant@pts/0
+   2292    2291 pts/0    Ss     0:00   -bash
+   4823       2 ?        I      0:16   [kworker/1:0-events]
+   4911       2 ?        I      0:08   [kworker/0:1-events]
+   4942       2 ?        I      0:00   [kworker/u4:1-events_power_efficient]
+   9653       2 ?        I      0:00   [kworker/u4:2-events_unbound]
+  12210    2292 pts/0    S+     0:00   /bin/bash ./ps_ax.sh
+  12211         ?        ?      0:00   [?]
+  12212         ?        ?      0:00   [?]
+  12213         ?        ?      0:00   [?]
+
+# показываю содержание доработанного скрипта
+vagrant@ubuntuserver:~$ cat ps_ax.sh
+#!/bin/bash
+
+get_tty_name() {
+    local pid=$1
+    local tty_nr=$(awk '{print $7}' /proc/$pid/stat 2>/dev/null)
+
+    [ -z "$tty_nr" ] && echo "?" && return;
+
+    local major=$(( (tty_nr >> 8) & 0xFFF ))  # 12 бит для major
+    local minor=$(( (tty_nr & 0xFF) | ((tty_nr >> 12) & 0xFFF00) ))
+
+    case $major in
+        0)   echo "?" ;;            # нет терминала
+        4)   echo "tty$minor" ;;    # виртуальные консоли (tty1-tty63)
+        5)   echo "tty" ;;          # /dev/tty (текущий терминал)
+        136) echo "pts/$minor" ;;   # псевдотерминалы
+        3)   echo "ttyp$minor" ;;   # старые BSD псевдотерминалы (редко)
+        7)   echo "ttyS$minor" ;;   # последовательные порты (COM)
+        8)   echo "ttyS$minor" ;;   # последовательные порты
+        204) echo "ttyACM$minor" ;; # USB модемы
+        188) echo "ttyUSB$minor" ;; # USB-COM адаптеры
+        *)   echo "unknown (major=$major)" ;;
+    esac
+}
+
+get_stat_like_ps() {
+    local pid=$1
+    local stat_file="/proc/$pid/stat"
+
+    [ ! -f "$stat_file" ] && echo "?" && return
+
+    # Читаем все нужные поля
+    read -r pid_ cmd state ppid pgrp session tty_nr tpgid flags minflt cminflt majflt cmajflt utime stime cutime cstime priority nice num_threads itrealvalue starttime vsize rss rsslim startcode endcode startstack kstkesp kstkeip signal blocked sigignore sigcatch wchan nswap cnswap exit_signal processor rt_priority policy delayacct_blkio_ticks guest_time cguest_time < <(cat "$stat_file")
+
+    # Начинаем с базового состояния
+    result="$state"
+
+    # Флаг s: лидер сеанса (PID == session)
+    [ "$pid_" = "$session" ] && result="${result}s"
+
+    # Флаг +: в группе переднего плана (pgrp == tpgid)
+    [ "$pgrp" = "$tpgid" ] && result="${result}+"
+
+    # Флаг <: высокий приоритет (nice < 0)
+    [ "$nice" -lt 0 ] && result="${result}<"
+
+    # Флаг N: низкий приоритет (nice > 0)
+    [ "$nice" -gt 0 ] && result="${result}N"
+
+    # Флаг l: многопоточный процесс (количество потоков > 1)
+    [ "$num_threads" -gt 1 ] && result="${result}l"
+
+    echo "$result"
+}
+
+get_time() {
+    local pid=$1
+    local ticks=$(awk '{print $14+$15}' "/proc/$pid/stat" 2>/dev/null)
+    local seconds=$(( ticks / $(getconf CLK_TCK) ))
+    printf "%d:%02d\n" $((seconds / 60)) $((seconds % 60))
+}
+
+get_command() {
+    local pid=$1
+    local cmdline=$(cat /proc/$pid/cmdline 2>/dev/null | tr '\0' ' ' | tr -d '\n' | sed 's/[[:space:]]*$//')
+
+    if [ ${#cmdline} -gt 1 ]; then
+        echo "${cmdline:0:80}"
+    else
+        local comm=$(cat /proc/$pid/comm 2>/dev/null | tr -d '\n')
+        if [ -n "$comm" ]; then
+            echo "[$comm]"
+        else
+            echo "[?]"
+        fi
+    fi
+}
+
+echo "    PID    PPID TTY      STAT   TIME COMMAND"
+
+cd /proc
+for pid in $(ls -d [0-9]* 2>/dev/null | sort -n); do
+column_PID=$(printf "%7d" "$pid")
+current_ppid=$(awk '{print $4}' "/proc/$pid/stat" 2>/dev/null)
+column_PPID=$(printf "%7s" "$current_ppid")
+column_TTY=$(printf "%-8s" "$(get_tty_name "$pid")")
+column_STAT=$(printf "%-6s" "$(get_stat_like_ps "$pid")")
+column_TIME=$(printf "%-6s" "$(get_time "$pid")")
+column_COMMAND=$(get_command "$pid")
+echo "$column_PID $column_PPID $column_TTY $column_STAT $column_TIME $column_COMMAND"
+done
