@@ -76,14 +76,16 @@ get_command() {
     fi
 }
 
-echo "    PID TTY      STAT   TIME COMMAND"
+echo "    PID    PPID TTY      STAT   TIME COMMAND"
 
 cd /proc
 for pid in $(ls -d [0-9]* 2>/dev/null | sort -n); do
 column_PID=$(printf "%7d" "$pid")
+current_ppid=$(awk '{print $4}' "/proc/$pid/stat" 2>/dev/null)
+column_PPID=$(printf "%7s" "$current_ppid")
 column_TTY=$(printf "%-8s" "$(get_tty_name "$pid")")
 column_STAT=$(printf "%-6s" "$(get_stat_like_ps "$pid")")
 column_TIME=$(printf "%-6s" "$(get_time "$pid")")
 column_COMMAND=$(get_command "$pid")
-echo "$column_PID $column_TTY $column_STAT $column_TIME $column_COMMAND"
+echo "$column_PID $column_PPID $column_TTY $column_STAT $column_TIME $column_COMMAND"
 done
